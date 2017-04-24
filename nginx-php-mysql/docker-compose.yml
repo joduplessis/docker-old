@@ -1,0 +1,30 @@
+web:
+  image: nginx:latest
+  ports:
+    - "8080:80"
+  volumes:
+    - ./app:/app
+    - ./site.conf:/etc/nginx/conf.d/default.conf
+  links:
+    - php
+php:
+  image: php-pdo
+  volumes:
+      - ./app:/app
+  links:
+    - database
+composer:
+    image: composer/composer
+    volumes_from:
+       - php
+    working_dir: /app
+database:
+  image: mysql
+  container_name: docker-mysql
+  ports:
+    - "3306:3306"
+  environment:
+    MYSQL_DATABASE: "Database"
+    MYSQL_USER: "root"
+    MYSQL_PASSWORD: "root"
+    MYSQL_ROOT_PASSWORD: "root"
