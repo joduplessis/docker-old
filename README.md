@@ -1,6 +1,15 @@
-# Apache & PHP
+# Apache & PHP (vhost)
 
 This is a general run-of-mill Apache installation using PHP. Nice thing here is that you can specify a vhosts file. Useful with Symfony & Laravel.
+
+```
+docker build -t "repo:tag" .
+docker run -p 80:80 -v $(pwd):/var/www/html repo:tag
+```
+
+# Apache & PHP (vanilla)
+
+Stock standard Apache - serving from /var/www/html. Really good for CodeIgnitor, or other frameworks not requiring you to serve from a specific directory. Or CMS's.
 
 ```
 docker build -t "repo:tag" .
