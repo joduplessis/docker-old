@@ -45,6 +45,9 @@ ENV PHP_TIMEZONE Africa/Johannesburg
 # Copy our virtual host file over
 COPY ./000-default.conf /etc/apache2/sites-available/000-default.conf
 
+# Create this directory
+RUN mkdir /var/www/html/public_html
+
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 RUN a2ensite 000-default.conf
